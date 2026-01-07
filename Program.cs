@@ -1,1 +1,353 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Net;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
+namespace SyncJsonClient
+{
+   public class Item
+   {
+      public int Id { get; set; }
+      public string Name { get; set; }
+      public double Price { get; set; }
+   }
+
+   class Program
+   {
+      private const string BaseUrl = "http://localhost:8080/api/items";
+      private static readonly WebClient _client = new WebClient();
+
+      static void Main(string[] args)
+      {
+         Console.WriteLine("HTTP Server Tester");
+         Console.WriteLine("==================\n");
+
+         // Устанавливаем Content-Type для JSON
+         _client.Headers[HttpRequestHeader.ContentType] = "application/json";
+         _client.Encoding = System.Text.Encoding.UTF8;
+
+         try
+         {
+            // 1. Проверяем, что сервер работает
+            TestServerConnection();
+
+            // 2. Получаем все элементы (должен быть пустой список)
+            Console.WriteLine("1. Получение всех элементов (должен быть пустой список):");
+            GetAllItems();
+
+            // 3. Создаем первый элемент
+            Console.WriteLine("\n2. Создание первого элемента:");
+            var item1 = CreateItem(new Item { Name = "Ноутбук", Price = 999.99 });
+
+            // 4. Создаем второй элемент
+            Console.WriteLine("\n3. Создание второго элемента:");
+            var item2 = CreateItem(new Item { Name = "Смартфон", Price = 499.99 });
+
+            // 5. Получаем все элементы (должно быть 2 элемента)
+            Console.WriteLine("\n4. Получение всех элементов (должно быть 2 элемента):");
+            GetAllItems();
+
+            // 6. Получаем элемент по ID
+            Console.WriteLine($"\n5. Получение элемента по ID {item1.Id}:");
+            GetItemById(item1.Id);
+
+            // 7. Обновляем элемент
+            Console.WriteLine($"\n6. Обновление элемента с ID {item1.Id}:");
+            var updatedItem = UpdateItem(item1.Id, new Item { Name = "Игровой ноутбук", Price = 1299.99 });
+
+            // 8. Проверяем обновление
+            Console.WriteLine("\n7. Проверка обновленного элемента:");
+            GetItemById(updatedItem.Id);
+
+            // 9. Пытаемся получить несуществующий элемент
+            Console.WriteLine("\n8. Попытка получить несуществующий элемент (ID=999):");
+            GetNonExistentItem(999);
+
+            // 10. Удаляем элемент
+            Console.WriteLine($"\n9. Удаление элемента с ID {item2.Id}:");
+            DeleteItem(item2.Id);
+
+            // 11. Проверяем, что элемент удален
+            Console.WriteLine("\n10. Проверка, что элемент удален:");
+            GetAllItems();
+
+            // 12. Пытаемся удалить несуществующий элемент
+            Console.WriteLine("\n11. Попытка удалить несуществующий элемент (ID=999):");
+            DeleteNonExistentItem(999);
+
+            // 13. Тестирование некорректных данных
+            Console.WriteLine("\n12. Тестирование некорректных данных:");
+            TestInvalidData();
+
+            // 14. Тестирование неверного метода
+            Console.WriteLine("\n13. Тестирование неверного метода (PATCH):");
+            TestInvalidMethod();
+
+            Console.WriteLine("\n\nВсе тесты завершены!");
+         }
+         catch (WebException ex)
+         {
+            if (ex.Response is HttpWebResponse response)
+            {
+               Console.WriteLine($"Ошибка HTTP: {response.StatusCode} - {response.StatusDescription}");
+
+               if (response.ContentLength > 0)
+               {
+                  using (var stream = response.GetResponseStream())
+                  using (var reader = new System.IO.StreamReader(stream))
+                  {
+                     var errorBody = reader.ReadToEnd();
+                     Console.WriteLine($"Тело ошибки: {errorBody}");
+                  }
+               }
+            }
+            else
+            {
+               Console.WriteLine($"Ошибка: {ex.Message}");
+            }
+         }
+         catch (Exception ex)
+         {
+            Console.WriteLine($"Неожиданная ошибка: {ex.Message}");
+         }
+
+         Console.WriteLine("\nНажмите любую клавишу для выхода...");
+         Console.ReadKey();
+      }
+
+      static void TestServerConnection()
+      {
+         try
+         {
+            var response = _client.DownloadString(BaseUrl);
+            Console.WriteLine("✓ Сервер доступен");
+         }
+         catch
+         {
+            Console.WriteLine("✗ Сервер недоступен. Убедитесь, что сервер запущен на http://localhost:8080/");
+            throw;
+         }
+      }
+
+      static void GetAllItems()
+      {
+         try
+         {
+            var response = _client.DownloadString(BaseUrl);
+            var items = JsonConvert.DeserializeObject<List<Item>>(response);
+
+            Console.WriteLine($"Статус: Успешно");
+            Console.WriteLine($"Найдено элементов: {items.Count}");
+
+            if (items.Count > 0)
+            {
+               foreach (var item in items)
+               {
+                  Console.WriteLine($"  - ID: {item.Id}, Название: {item.Name}, Цена: {item.Price:C}");
+               }
+            }
+         }
+         catch (WebException ex)
+         {
+            HandleWebException(ex);
+         }
+      }
+
+      static Item CreateItem(Item item)
+      {
+         try
+         {
+            var json = JsonConvert.SerializeObject(item);
+            var response = _client.UploadString(BaseUrl, "POST", json);
+            var createdItem = JsonConvert.DeserializeObject<Item>(response);
+
+            Console.WriteLine($"Статус: Создано успешно");
+            Console.WriteLine($"ID: {createdItem.Id}, Название: {createdItem.Name}, Цена: {createdItem.Price:C}");
+
+            return createdItem;
+         }
+         catch (WebException ex)
+         {
+            HandleWebException(ex);
+            return null;
+         }
+      }
+
+      static void GetItemById(int id)
+      {
+         try
+         {
+            var url = $"{BaseUrl}/{id}";
+            var response = _client.DownloadString(url);
+            var item = JsonConvert.DeserializeObject<Item>(response);
+
+            Console.WriteLine($"Статус: Найден");
+            Console.WriteLine($"ID: {item.Id}, Название: {item.Name}, Цена: {item.Price:C}");
+         }
+         catch (WebException ex)
+         {
+            HandleWebException(ex);
+         }
+      }
+
+      static Item UpdateItem(int id, Item item)
+      {
+         try
+         {
+            var url = $"{BaseUrl}/{id}";
+            var json = JsonConvert.SerializeObject(item);
+            var response = _client.UploadString(url, "PUT", json);
+            var updatedItem = JsonConvert.DeserializeObject<Item>(response);
+
+            Console.WriteLine($"Статус: Обновлено успешно");
+            Console.WriteLine($"ID: {updatedItem.Id}, Название: {updatedItem.Name}, Цена: {updatedItem.Price:C}");
+
+            return updatedItem;
+         }
+         catch (WebException ex)
+         {
+            HandleWebException(ex);
+            return null;
+         }
+      }
+
+      static void DeleteItem(int id)
+      {
+         try
+         {
+            var url = $"{BaseUrl}/{id}";
+            var response = _client.UploadString(url, "DELETE", "");
+            var result = JObject.Parse(response);
+
+            Console.WriteLine($"Статус: Удалено успешно");
+            Console.WriteLine($"Сообщение: {result["message"]}");
+         }
+         catch (WebException ex)
+         {
+            HandleWebException(ex);
+         }
+      }
+
+      static void GetNonExistentItem(int id)
+      {
+         try
+         {
+            var url = $"{BaseUrl}/{id}";
+            var response = _client.DownloadString(url);
+            Console.WriteLine($"Статус: ОШИБКА - элемент найден (не должно было произойти)");
+         }
+         catch (WebException ex)
+         {
+            if (ex.Response is HttpWebResponse response && response.StatusCode == HttpStatusCode.NotFound)
+            {
+               Console.WriteLine($"Статус: Ожидаемая ошибка - элемент не найден");
+            }
+            else
+            {
+               HandleWebException(ex);
+            }
+         }
+      }
+
+      static void DeleteNonExistentItem(int id)
+      {
+         try
+         {
+            var url = $"{BaseUrl}/{id}";
+            var response = _client.UploadString(url, "DELETE", "");
+            Console.WriteLine($"Статус: ОШИБКА - элемент удален (не должно было произойти)");
+         }
+         catch (WebException ex)
+         {
+            if (ex.Response is HttpWebResponse response && response.StatusCode == HttpStatusCode.NotFound)
+            {
+               Console.WriteLine($"Статус: Ожидаемая ошибка - элемент не найден");
+            }
+            else
+            {
+               HandleWebException(ex);
+            }
+         }
+      }
+
+      static void TestInvalidData()
+      {
+         try
+         {
+            // Пытаемся отправить невалидный JSON
+            var invalidJson = "{invalid json}";
+            var response = _client.UploadString(BaseUrl, "POST", invalidJson);
+            Console.WriteLine($"Статус: ОШИБКА - сервер принял невалидный JSON");
+         }
+         catch (WebException ex)
+         {
+            if (ex.Response is HttpWebResponse response && response.StatusCode == HttpStatusCode.BadRequest)
+            {
+               Console.WriteLine($"Статус: Ожидаемая ошибка - невалидные данные");
+               using (var stream = ex.Response.GetResponseStream())
+               using (var reader = new System.IO.StreamReader(stream))
+               {
+                  var error = reader.ReadToEnd();
+                  Console.WriteLine($"Сообщение об ошибке: {error}");
+               }
+            }
+            else
+            {
+               HandleWebException(ex);
+            }
+         }
+      }
+
+      static void TestInvalidMethod()
+      {
+         try
+         {
+            // Пытаемся использовать неразрешенный метод
+            _client.Headers[HttpRequestHeader.ContentType] = "application/json";
+            var response = _client.UploadString(BaseUrl, "PATCH", "{}");
+            Console.WriteLine($"Статус: ОШИБКА - сервер принял неразрешенный метод");
+         }
+         catch (WebException ex)
+         {
+            if (ex.Response is HttpWebResponse response && response.StatusCode == HttpStatusCode.MethodNotAllowed)
+            {
+               Console.WriteLine($"Статус: Ожидаемая ошибка - метод не разрешен");
+            }
+            else
+            {
+               HandleWebException(ex);
+            }
+         }
+      }
+
+      static void HandleWebException(WebException ex)
+      {
+         if (ex.Response is HttpWebResponse response)
+         {
+            Console.WriteLine($"HTTP Ошибка: {(int)response.StatusCode} {response.StatusCode}");
+
+            try
+            {
+               using (var stream = response.GetResponseStream())
+               using (var reader = new System.IO.StreamReader(stream))
+               {
+                  var errorBody = reader.ReadToEnd();
+                  if (!string.IsNullOrEmpty(errorBody))
+                  {
+                     Console.WriteLine($"Тело ошибки: {errorBody}");
+                  }
+               }
+            }
+            catch
+            {
+               // Игнорируем ошибки чтения тела ответа
+            }
+         }
+         else
+         {
+            Console.WriteLine($"Ошибка: {ex.Message}");
+         }
+      }
+   }
+}
