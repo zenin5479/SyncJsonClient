@@ -1,10 +1,10 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Net;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-namespace SyncClient
+namespace SyncJsonClient
 {
    public class Item
    {
