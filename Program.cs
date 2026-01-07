@@ -15,7 +15,7 @@ namespace SyncJsonClient
 
    class Program
    {
-      private const string BaseUrl = "http://localhost:8080/api/items";
+      private const string BaseUrl = "http://127.0.0.1:8080/api/items";
       private static readonly WebClient _client = new WebClient();
 
       static void Main(string[] args)
@@ -125,7 +125,7 @@ namespace SyncJsonClient
          }
          catch
          {
-            Console.WriteLine("✗ Сервер недоступен. Убедитесь, что сервер запущен на http://localhost:8080/");
+            Console.WriteLine("✗ Сервер недоступен. Убедитесь, что сервер запущен на http://127.0.0.1:8080/");
             throw;
          }
       }
