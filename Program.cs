@@ -21,7 +21,7 @@ namespace SyncJsonClient
       static void Main(string[] args)
       {
          Console.WriteLine("SyncJsonServer Тест");
-         Console.WriteLine("==================\n");
+         Console.WriteLine("===================");
 
          // Устанавливаем Content-Type для JSON
          Client.Headers[HttpRequestHeader.ContentType] = "application/json";
