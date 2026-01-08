@@ -121,11 +121,11 @@ namespace SyncJsonClient
          try
          {
             var response = _client.DownloadString(BaseUrl);
-            Console.WriteLine("✓ Сервер доступен");
+            Console.WriteLine("Сервер доступен");
          }
          catch
          {
-            Console.WriteLine("✗ Сервер недоступен. Убедитесь, что сервер запущен на http://127.0.0.1:8080/");
+            Console.WriteLine("Сервер недоступен. Убедитесь, что сервер запущен на http://127.0.0.1:8080/");
             throw;
          }
       }
