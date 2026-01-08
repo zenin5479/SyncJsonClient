@@ -36,11 +36,11 @@ namespace SyncJsonClient
 
             // 3. Создаем первый элемент
             Console.WriteLine("\n2. Создание первого элемента:");
-            var item1 = CreateItem(new Item { Name = "Ноутбук", Price = 999.99 });
+            var item1 = CreateItem(new Item { Name = "Ноутбук", Price = 1567.89 });
 
             // 4. Создаем второй элемент
             Console.WriteLine("\n3. Создание второго элемента:");
-            var item2 = CreateItem(new Item { Name = "Смартфон", Price = 499.99 });
+            var item2 = CreateItem(new Item { Name = "Смартфон", Price = 234.56 });
 
             // 5. Получаем все элементы (должно быть 2 элемента)
             Console.WriteLine("\n4. Получение всех элементов (должно быть 2 элемента):");
@@ -52,7 +52,7 @@ namespace SyncJsonClient
 
             // 7. Обновляем элемент
             Console.WriteLine("\n6. Обновление элемента с ID {0}:", item1.Id);
-            var updatedItem = UpdateItem(item1.Id, new Item { Name = "Игровой ноутбук", Price = 1299.99 });
+            var updatedItem = UpdateItem(item1.Id, new Item { Name = "Игровой ноутбук", Price = 1234.56 });
 
             // 8. Проверяем обновление
             Console.WriteLine("\n7. Проверка обновленного элемента:");
@@ -134,7 +134,6 @@ namespace SyncJsonClient
          {
             var response = Client.DownloadString(BaseUrl);
             var items = JsonConvert.DeserializeObject<List<Item>>(response);
-
             Console.WriteLine($"Статус: Успешно");
             Console.WriteLine($"Найдено элементов: {items.Count}");
 
@@ -142,7 +141,7 @@ namespace SyncJsonClient
             {
                foreach (var item in items)
                {
-                  Console.WriteLine($"  - ID: {item.Id}, Название: {item.Name}, Цена: {item.Price:C}");
+                  Console.WriteLine("ID: {0}, Название: {1}, Цена: {2:F}", item.Id, item.Name, item.Price);
                }
             }
          }
@@ -161,7 +160,7 @@ namespace SyncJsonClient
             var createdItem = JsonConvert.DeserializeObject<Item>(response);
 
             Console.WriteLine($"Статус: Создано успешно");
-            Console.WriteLine($"ID: {createdItem.Id}, Название: {createdItem.Name}, Цена: {createdItem.Price:C}");
+            Console.WriteLine("ID: {0}, Название: {1}, Цена: {2:F}", createdItem.Id, createdItem.Name, createdItem.Price);
 
             return createdItem;
          }
@@ -181,7 +180,7 @@ namespace SyncJsonClient
             var item = JsonConvert.DeserializeObject<Item>(response);
 
             Console.WriteLine($"Статус: Найден");
-            Console.WriteLine($"ID: {item.Id}, Название: {item.Name}, Цена: {item.Price:C}");
+            Console.WriteLine("ID: {0}, Название: {1}, Цена: {2:F}", item.Id, item.Name, item.Price);
          }
          catch (WebException ex)
          {
@@ -199,7 +198,7 @@ namespace SyncJsonClient
             var updatedItem = JsonConvert.DeserializeObject<Item>(response);
 
             Console.WriteLine($"Статус: Обновлено успешно");
-            Console.WriteLine($"ID: {updatedItem.Id}, Название: {updatedItem.Name}, Цена: {updatedItem.Price:C}");
+            Console.WriteLine("ID: {0}, Название: {1}, Цена: {2:F}", updatedItem.Id, updatedItem.Name, updatedItem.Price);
 
             return updatedItem;
          }
