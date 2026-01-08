@@ -22,11 +22,9 @@ namespace SyncJsonClient
       {
          Console.WriteLine("SyncJsonServer Тест");
          Console.WriteLine("===================");
-
          // Устанавливаем Content-Type для JSON
          Client.Headers[HttpRequestHeader.ContentType] = "application/json";
          Client.Encoding = System.Text.Encoding.UTF8;
-
          try
          {
             // 1. Проверяем, что сервер работает
