@@ -90,7 +90,7 @@ namespace SyncJsonClient
          {
             if (ex.Response is HttpWebResponse response)
             {
-               Console.WriteLine($"Ошибка HTTP: {response.StatusCode} - {response.StatusDescription}");
+               Console.WriteLine("Ошибка HTTP: {0} - {1}", response.StatusCode, response.StatusDescription);
 
                if (response.ContentLength > 0)
                {
@@ -98,18 +98,18 @@ namespace SyncJsonClient
                   using (var reader = new System.IO.StreamReader(stream))
                   {
                      var errorBody = reader.ReadToEnd();
-                     Console.WriteLine($"Тело ошибки: {errorBody}");
+                     Console.WriteLine("Тело ошибки: {0}", errorBody);
                   }
                }
             }
             else
             {
-               Console.WriteLine($"Ошибка: {ex.Message}");
+               Console.WriteLine("Ошибка: {0}", ex.Message);
             }
          }
          catch (Exception ex)
          {
-            Console.WriteLine($"Неожиданная ошибка: {ex.Message}");
+            Console.WriteLine("Неожиданная ошибка: {0}", ex.Message);
          }
 
          Console.WriteLine("\nНажмите любую клавишу для выхода...");
