@@ -346,7 +346,7 @@ namespace SyncJsonClient
          }
          else
          {
-            Console.WriteLine($"Ошибка: {ex.Message}");
+            Console.WriteLine("Ошибка: {0}", ex.Message);
          }
       }
    }
