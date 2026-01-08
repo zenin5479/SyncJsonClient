@@ -335,7 +335,7 @@ namespace SyncJsonClient
                   var errorBody = reader.ReadToEnd();
                   if (!string.IsNullOrEmpty(errorBody))
                   {
-                     Console.WriteLine($"Тело ошибки: {errorBody}");
+                     Console.WriteLine("Тело ошибки: {0}", errorBody);
                   }
                }
             }
