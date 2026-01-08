@@ -16,7 +16,7 @@ namespace SyncJsonClient
    class Program
    {
       private const string BaseUrl = "http://127.0.0.1:8080/api/items";
-      private static readonly WebClient _client = new WebClient();
+      private static readonly WebClient Client = new WebClient();
 
       static void Main(string[] args)
       {
@@ -24,8 +24,8 @@ namespace SyncJsonClient
          Console.WriteLine("==================\n");
 
          // Устанавливаем Content-Type для JSON
-         _client.Headers[HttpRequestHeader.ContentType] = "application/json";
-         _client.Encoding = System.Text.Encoding.UTF8;
+         Client.Headers[HttpRequestHeader.ContentType] = "application/json";
+         Client.Encoding = System.Text.Encoding.UTF8;
 
          try
          {
@@ -120,7 +120,7 @@ namespace SyncJsonClient
       {
          try
          {
-            var response = _client.DownloadString(BaseUrl);
+            var response = Client.DownloadString(BaseUrl);
             Console.WriteLine("Сервер доступен");
          }
          catch
@@ -134,7 +134,7 @@ namespace SyncJsonClient
       {
          try
          {
-            var response = _client.DownloadString(BaseUrl);
+            var response = Client.DownloadString(BaseUrl);
             var items = JsonConvert.DeserializeObject<List<Item>>(response);
 
             Console.WriteLine($"Статус: Успешно");
@@ -159,7 +159,7 @@ namespace SyncJsonClient
          try
          {
             var json = JsonConvert.SerializeObject(item);
-            var response = _client.UploadString(BaseUrl, "POST", json);
+            var response = Client.UploadString(BaseUrl, "POST", json);
             var createdItem = JsonConvert.DeserializeObject<Item>(response);
 
             Console.WriteLine($"Статус: Создано успешно");
@@ -179,7 +179,7 @@ namespace SyncJsonClient
          try
          {
             var url = $"{BaseUrl}/{id}";
-            var response = _client.DownloadString(url);
+            var response = Client.DownloadString(url);
             var item = JsonConvert.DeserializeObject<Item>(response);
 
             Console.WriteLine($"Статус: Найден");
@@ -197,7 +197,7 @@ namespace SyncJsonClient
          {
             var url = $"{BaseUrl}/{id}";
             var json = JsonConvert.SerializeObject(item);
-            var response = _client.UploadString(url, "PUT", json);
+            var response = Client.UploadString(url, "PUT", json);
             var updatedItem = JsonConvert.DeserializeObject<Item>(response);
 
             Console.WriteLine($"Статус: Обновлено успешно");
@@ -217,7 +217,7 @@ namespace SyncJsonClient
          try
          {
             var url = $"{BaseUrl}/{id}";
-            var response = _client.UploadString(url, "DELETE", "");
+            var response = Client.UploadString(url, "DELETE", "");
             var result = JObject.Parse(response);
 
             Console.WriteLine($"Статус: Удалено успешно");
@@ -234,7 +234,7 @@ namespace SyncJsonClient
          try
          {
             var url = $"{BaseUrl}/{id}";
-            var response = _client.DownloadString(url);
+            var response = Client.DownloadString(url);
             Console.WriteLine($"Статус: ОШИБКА - элемент найден (не должно было произойти)");
          }
          catch (WebException ex)
@@ -255,7 +255,7 @@ namespace SyncJsonClient
          try
          {
             var url = $"{BaseUrl}/{id}";
-            var response = _client.UploadString(url, "DELETE", "");
+            var response = Client.UploadString(url, "DELETE", "");
             Console.WriteLine($"Статус: ОШИБКА - элемент удален (не должно было произойти)");
          }
          catch (WebException ex)
@@ -277,7 +277,7 @@ namespace SyncJsonClient
          {
             // Пытаемся отправить невалидный JSON
             var invalidJson = "{invalid json}";
-            var response = _client.UploadString(BaseUrl, "POST", invalidJson);
+            var response = Client.UploadString(BaseUrl, "POST", invalidJson);
             Console.WriteLine($"Статус: ОШИБКА - сервер принял невалидный JSON");
          }
          catch (WebException ex)
@@ -304,8 +304,8 @@ namespace SyncJsonClient
          try
          {
             // Пытаемся использовать неразрешенный метод
-            _client.Headers[HttpRequestHeader.ContentType] = "application/json";
-            var response = _client.UploadString(BaseUrl, "PATCH", "{}");
+            Client.Headers[HttpRequestHeader.ContentType] = "application/json";
+            var response = Client.UploadString(BaseUrl, "PATCH", "{}");
             Console.WriteLine($"Статус: ОШИБКА - сервер принял неразрешенный метод");
          }
          catch (WebException ex)
