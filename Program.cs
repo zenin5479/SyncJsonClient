@@ -20,7 +20,7 @@ namespace SyncJsonClient
 
       static void Main(string[] args)
       {
-         Console.WriteLine("HTTP Server Tester");
+         Console.WriteLine("SyncJsonServer Тест");
          Console.WriteLine("==================\n");
 
          // Устанавливаем Content-Type для JSON
