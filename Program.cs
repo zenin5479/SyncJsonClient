@@ -49,11 +49,11 @@ namespace SyncJsonClient
             GetAllItems();
 
             // 6. Получаем элемент по ID
-            Console.WriteLine($"\n5. Получение элемента по ID {item1.Id}:");
+            Console.WriteLine("\n5. Получение элемента по ID {0}:", item1.Id);
             GetItemById(item1.Id);
 
             // 7. Обновляем элемент
-            Console.WriteLine($"\n6. Обновление элемента с ID {item1.Id}:");
+            Console.WriteLine("\n6. Обновление элемента с ID {0}:", item1.Id);
             var updatedItem = UpdateItem(item1.Id, new Item { Name = "Игровой ноутбук", Price = 1299.99 });
 
             // 8. Проверяем обновление
@@ -65,7 +65,7 @@ namespace SyncJsonClient
             GetNonExistentItem(999);
 
             // 10. Удаляем элемент
-            Console.WriteLine($"\n9. Удаление элемента с ID {item2.Id}:");
+            Console.WriteLine("\n9. Удаление элемента с ID {0}:", item2.Id);
             DeleteItem(item2.Id);
 
             // 11. Проверяем, что элемент удален
@@ -84,7 +84,7 @@ namespace SyncJsonClient
             Console.WriteLine("\n13. Тестирование неверного метода (PATCH):");
             TestInvalidMethod();
 
-            Console.WriteLine("\n\nВсе тесты завершены!");
+            Console.WriteLine("\nВсе тесты завершены!");
          }
          catch (WebException ex)
          {
