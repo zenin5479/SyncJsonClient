@@ -190,8 +190,8 @@ namespace SyncJsonClient
          try
          {
             string url = string.Format("{0}/{1}", BaseUrl, id);
-            var json = JsonConvert.SerializeObject(item);
-            var response = Client.UploadString(url, "PUT", json);
+            string json = JsonConvert.SerializeObject(item);
+            string response = Client.UploadString(url, "PUT", json);
             var updatedItem = JsonConvert.DeserializeObject<Item>(response);
 
             Console.WriteLine($"Статус: Обновлено успешно");
