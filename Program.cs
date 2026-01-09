@@ -192,7 +192,7 @@ namespace SyncJsonClient
             string url = string.Format("{0}/{1}", BaseUrl, id);
             string json = JsonConvert.SerializeObject(item);
             string response = Client.UploadString(url, "PUT", json);
-            var updatedItem = JsonConvert.DeserializeObject<Item>(response);
+            Item updatedItem = JsonConvert.DeserializeObject<Item>(response);
 
             Console.WriteLine($"Статус: Обновлено успешно");
             Console.WriteLine("ID: {0}, Название: {1}, Цена: {2:F}", updatedItem.Id, updatedItem.Name, updatedItem.Price);
