@@ -118,7 +118,7 @@ namespace SyncJsonClient
       {
          try
          {
-            var response = Client.DownloadString(BaseUrl);
+            Client.DownloadString(BaseUrl);
             Console.WriteLine("Сервер доступен");
          }
          catch
@@ -193,7 +193,6 @@ namespace SyncJsonClient
             string json = JsonConvert.SerializeObject(item);
             string response = Client.UploadString(url, "PUT", json);
             Item updatedItem = JsonConvert.DeserializeObject<Item>(response);
-
             Console.WriteLine("Статус: Обновлено успешно");
             Console.WriteLine("ID: {0}, Название: {1}, Цена: {2:F}", updatedItem.Id, updatedItem.Name, updatedItem.Price);
 
