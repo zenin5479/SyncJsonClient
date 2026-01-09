@@ -132,15 +132,16 @@ namespace SyncJsonClient
       {
          try
          {
-            var response = Client.DownloadString(BaseUrl);
-            var items = JsonConvert.DeserializeObject<List<Item>>(response);
+            string response = Client.DownloadString(BaseUrl);
+            List<Item> items = JsonConvert.DeserializeObject<List<Item>>(response);
             Console.WriteLine("Статус: Успешно");
             Console.WriteLine("Найдено элементов: {0}", items.Count);
 
             if (items.Count > 0)
             {
-               foreach (var item in items)
+               for (int i = 0; i < items.Count; i++)
                {
+                  Item item = items[i];
                   Console.WriteLine("ID: {0}, Название: {1}, Цена: {2:F}", item.Id, item.Name, item.Price);
                }
             }
