@@ -210,7 +210,7 @@ namespace SyncJsonClient
       {
          try
          {
-            var url = $"{BaseUrl}/{id}";
+            string url = string.Format("{0}/{1}", BaseUrl, id);
             var response = Client.UploadString(url, "DELETE", "");
             var result = JObject.Parse(response);
 
