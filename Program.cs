@@ -214,7 +214,7 @@ namespace SyncJsonClient
             string response = Client.UploadString(url, "DELETE", "");
             JObject result = JObject.Parse(response);
             Console.WriteLine("Статус: Удалено успешно");
-            Console.WriteLine(string.Format("Сообщение: {0}", result["message"]));
+            Console.WriteLine("Сообщение: {0}", result["message"]);
          }
          catch (WebException ex)
          {
