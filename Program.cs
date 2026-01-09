@@ -173,9 +173,9 @@ namespace SyncJsonClient
       {
          try
          {
-            var url = string.Format("{0}/{1}", BaseUrl, id);
-            var response = Client.DownloadString(url);
-            var item = JsonConvert.DeserializeObject<Item>(response);
+            string url = string.Format("{0}/{1}", BaseUrl, id);
+            string response = Client.DownloadString(url);
+            Item item = JsonConvert.DeserializeObject<Item>(response);
 
             Console.WriteLine($"Статус: Найден");
             Console.WriteLine("ID: {0}, Название: {1}, Цена: {2:F}", item.Id, item.Name, item.Price);
