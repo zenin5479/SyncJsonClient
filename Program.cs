@@ -226,7 +226,7 @@ namespace SyncJsonClient
       {
          try
          {
-            string url = $"{BaseUrl}/{id}";
+            string url = string.Format("{0}/{1}", BaseUrl, id);
             var response = Client.DownloadString(url);
             Console.WriteLine($"Статус: ОШИБКА - элемент найден (не должно было произойти)");
          }
