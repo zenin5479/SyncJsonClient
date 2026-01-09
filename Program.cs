@@ -136,7 +136,6 @@ namespace SyncJsonClient
             List<Item> items = JsonConvert.DeserializeObject<List<Item>>(response);
             Console.WriteLine("Статус: Успешно");
             Console.WriteLine("Найдено элементов: {0}", items.Count);
-
             if (items.Count > 0)
             {
                for (int i = 0; i < items.Count; i++)
@@ -159,10 +158,8 @@ namespace SyncJsonClient
             string json = JsonConvert.SerializeObject(item);
             string response = Client.UploadString(BaseUrl, "POST", json);
             Item createdItem = JsonConvert.DeserializeObject<Item>(response);
-
             Console.WriteLine("Статус: Создано успешно");
             Console.WriteLine("ID: {0}, Название: {1}, Цена: {2:F}", createdItem.Id, createdItem.Name, createdItem.Price);
-
             return createdItem;
          }
          catch (WebException ex)
