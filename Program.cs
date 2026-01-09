@@ -134,8 +134,8 @@ namespace SyncJsonClient
          {
             var response = Client.DownloadString(BaseUrl);
             var items = JsonConvert.DeserializeObject<List<Item>>(response);
-            Console.WriteLine($"Статус: Успешно");
-            Console.WriteLine($"Найдено элементов: {items.Count}");
+            Console.WriteLine("Статус: Успешно");
+            Console.WriteLine(string.Format("Найдено элементов: {0}", items.Count));
 
             if (items.Count > 0)
             {
