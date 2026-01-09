@@ -156,9 +156,9 @@ namespace SyncJsonClient
       {
          try
          {
-            var json = JsonConvert.SerializeObject(item);
-            var response = Client.UploadString(BaseUrl, "POST", json);
-            var createdItem = JsonConvert.DeserializeObject<Item>(response);
+            string json = JsonConvert.SerializeObject(item);
+            string response = Client.UploadString(BaseUrl, "POST", json);
+            Item createdItem = JsonConvert.DeserializeObject<Item>(response);
 
             Console.WriteLine($"Статус: Создано успешно");
             Console.WriteLine("ID: {0}, Название: {1}, Цена: {2:F}", createdItem.Id, createdItem.Name, createdItem.Price);
