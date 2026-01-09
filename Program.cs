@@ -234,7 +234,7 @@ namespace SyncJsonClient
          {
             if (ex.Response is HttpWebResponse response && response.StatusCode == HttpStatusCode.NotFound)
             {
-               Console.WriteLine($"Статус: Ожидаемая ошибка - элемент не найден");
+               Console.WriteLine("Статус: Ожидаемая ошибка - элемент не найден");
             }
             else
             {
