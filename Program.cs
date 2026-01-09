@@ -173,7 +173,7 @@ namespace SyncJsonClient
       {
          try
          {
-            var url = $"{BaseUrl}/{id}";
+            var url = string.Format("{0}/{1}", BaseUrl, id);
             var response = Client.DownloadString(url);
             var item = JsonConvert.DeserializeObject<Item>(response);
 
