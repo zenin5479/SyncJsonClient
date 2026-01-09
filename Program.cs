@@ -189,7 +189,7 @@ namespace SyncJsonClient
       {
          try
          {
-            var url = $"{BaseUrl}/{id}";
+            string url = string.Format("{0}/{1}", BaseUrl, id);
             var json = JsonConvert.SerializeObject(item);
             var response = Client.UploadString(url, "PUT", json);
             var updatedItem = JsonConvert.DeserializeObject<Item>(response);
