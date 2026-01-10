@@ -236,9 +236,17 @@ namespace SyncJsonClient
          }
          catch (WebException ex)
          {
-            if (ex.Response is HttpWebResponse response && response.StatusCode == HttpStatusCode.NotFound)
+            HttpWebResponse response = (HttpWebResponse)ex.Response;
+            if (response != null)
             {
-               Console.WriteLine("Статус: Ожидаемая ошибка - элемент не найден");
+               if (response.StatusCode == HttpStatusCode.NotFound)
+               {
+                  Console.WriteLine("Статус: Ожидаемая ошибка - элемент не найден");
+               }
+               else
+               {
+                  HandleWebException(ex);
+               }
             }
             else
             {
