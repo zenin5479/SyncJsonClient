@@ -86,7 +86,8 @@ namespace SyncJsonClient
          }
          catch (WebException ex)
          {
-            if (ex.Response is HttpWebResponse response)
+            HttpWebResponse response = (HttpWebResponse)ex.Response;
+            if (response != null)
             {
                Console.WriteLine("Ошибка HTTP: {0} - {1}", response.StatusCode, response.StatusDescription);
 
