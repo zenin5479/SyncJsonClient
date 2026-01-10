@@ -202,7 +202,6 @@ namespace SyncJsonClient
             Item updatedItem = JsonConvert.DeserializeObject<Item>(response);
             Console.WriteLine("Статус: Обновлено успешно");
             Console.WriteLine("ID: {0}, Название: {1}, Цена: {2:F}", updatedItem.Id, updatedItem.Name, updatedItem.Price);
-
             return updatedItem;
          }
          catch (WebException ex)
