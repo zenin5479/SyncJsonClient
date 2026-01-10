@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 
 namespace SyncJsonClient
@@ -90,14 +91,16 @@ namespace SyncJsonClient
             if (response != null)
             {
                Console.WriteLine("Ошибка HTTP: {0} - {1}", response.StatusCode, response.StatusDescription);
-
                if (response.ContentLength > 0)
                {
-                  using (var stream = response.GetResponseStream())
-                  using (var reader = new System.IO.StreamReader(stream))
+                  using (Stream stream = response.GetResponseStream())
                   {
-                     var errorBody = reader.ReadToEnd();
-                     Console.WriteLine("Тело ошибки: {0}", errorBody);
+                     if (stream != null)
+                        using (StreamReader reader = new StreamReader(stream))
+                        {
+                           string errorBody = reader.ReadToEnd();
+                           Console.WriteLine("Тело ошибки: {0}", errorBody);
+                        }
                   }
                }
             }
@@ -112,6 +115,7 @@ namespace SyncJsonClient
          }
 
          Console.WriteLine("\nНажмите любую клавишу для выхода...");
+
          Console.ReadKey();
       }
 
