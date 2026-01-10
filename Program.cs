@@ -96,11 +96,13 @@ namespace SyncJsonClient
                   using (Stream stream = response.GetResponseStream())
                   {
                      if (stream != null)
+                     {
                         using (StreamReader reader = new StreamReader(stream))
                         {
                            string errorBody = reader.ReadToEnd();
                            Console.WriteLine("Тело ошибки: {0}", errorBody);
                         }
+                     }
                   }
                }
             }
