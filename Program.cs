@@ -266,7 +266,7 @@ namespace SyncJsonClient
          }
          catch (WebException ex)
          {
-            var response = ex.Response as HttpWebResponse;
+            HttpWebResponse response = (HttpWebResponse)ex.Response;
             if (response != null)
             {
                if (response.StatusCode == HttpStatusCode.NotFound)
