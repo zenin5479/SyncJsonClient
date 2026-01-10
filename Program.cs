@@ -36,11 +36,11 @@ namespace SyncJsonClient
 
             // 3. Создаем первый элемент
             Console.WriteLine("\n2. Создание первого элемента:");
-            var item1 = CreateItem(new Item { Name = "Ноутбук", Price = 1567.89 });
+            Item item1 = CreateItem(new Item { Name = "Ноутбук", Price = 1567.89 });
 
             // 4. Создаем второй элемент
             Console.WriteLine("\n3. Создание второго элемента:");
-            var item2 = CreateItem(new Item { Name = "Смартфон", Price = 234.56 });
+            Item item2 = CreateItem(new Item { Name = "Смартфон", Price = 234.56 });
 
             // 5. Получаем все элементы (должно быть 2 элемента)
             Console.WriteLine("\n4. Получение всех элементов (должно быть 2 элемента):");
@@ -52,7 +52,7 @@ namespace SyncJsonClient
 
             // 7. Обновляем элемент
             Console.WriteLine("\n6. Обновление элемента с ID {0}:", item1.Id);
-            var updatedItem = UpdateItem(item1.Id, new Item { Name = "Игровой ноутбук", Price = 1234.56 });
+            Item updatedItem = UpdateItem(item1.Id, new Item { Name = "Игровой ноутбук", Price = 1234.56 });
 
             // 8. Проверяем обновление
             Console.WriteLine("\n7. Проверка обновленного элемента:");
