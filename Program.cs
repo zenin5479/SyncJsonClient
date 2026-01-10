@@ -260,7 +260,7 @@ namespace SyncJsonClient
       {
          try
          {
-            string url = $"{BaseUrl}/{id}";
+            string url = string.Format("{0}/{1}", BaseUrl, id);
             var response = Client.UploadString(url, "DELETE", "");
             Console.WriteLine($"Статус: ОШИБКА - элемент удален (не должно было произойти)");
          }
