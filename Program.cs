@@ -39,7 +39,7 @@ namespace SyncJsonClient
             Console.WriteLine("\n2. Создание первого элемента:");
             Item item1 = CreateItem(new Item { Name = "Ноутбук", Price = 1567.89 });
 
-            // 4. Создаем второй элемент
+            // 4. Создаем второй и третий элемент
             Console.WriteLine("\n3. Создание второго и третьего элемента:");
             Item item2 = CreateItem(new Item { Name = "Смартфон", Price = 234.56 });
             Item item3 = CreateItem(new Item { Name = "Смартфон", Price = 543.21 });
