@@ -305,11 +305,13 @@ namespace SyncJsonClient
                   using (Stream stream = ex.Response.GetResponseStream())
                   {
                      if (stream != null)
+                     {
                         using (StreamReader reader = new StreamReader(stream))
                         {
                            string error = reader.ReadToEnd();
                            Console.WriteLine("Сообщение об ошибке: {0}", error);
                         }
+                     }
                   }
                }
                else
