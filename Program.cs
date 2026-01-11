@@ -304,7 +304,7 @@ namespace SyncJsonClient
                   Console.WriteLine("Статус: Ожидаемая ошибка - невалидные данные");
                   using (Stream stream = ex.Response.GetResponseStream())
                   {
-                     using (var reader = new StreamReader(stream))
+                     using (StreamReader reader = new StreamReader(stream))
                      {
                         var error = reader.ReadToEnd();
                         Console.WriteLine($"Сообщение об ошибке: {error}");
