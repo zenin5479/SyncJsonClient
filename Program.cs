@@ -296,14 +296,22 @@ namespace SyncJsonClient
          }
          catch (WebException ex)
          {
-            if (ex.Response is HttpWebResponse response && response.StatusCode == HttpStatusCode.BadRequest)
+            var response = ex.Response as HttpWebResponse;
+            if (response != null)
             {
-               Console.WriteLine($"Статус: Ожидаемая ошибка - невалидные данные");
-               using (var stream = ex.Response.GetResponseStream())
-               using (var reader = new StreamReader(stream))
+               if (response.StatusCode == HttpStatusCode.BadRequest)
                {
-                  var error = reader.ReadToEnd();
-                  Console.WriteLine($"Сообщение об ошибке: {error}");
+                  Console.WriteLine($"Статус: Ожидаемая ошибка - невалидные данные");
+                  using (var stream = ex.Response.GetResponseStream())
+                  using (var reader = new StreamReader(stream))
+                  {
+                     var error = reader.ReadToEnd();
+                     Console.WriteLine($"Сообщение об ошибке: {error}");
+                  }
+               }
+               else
+               {
+                  HandleWebException(ex);
                }
             }
             else
