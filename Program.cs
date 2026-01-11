@@ -308,7 +308,7 @@ namespace SyncJsonClient
                         using (StreamReader reader = new StreamReader(stream))
                         {
                            string error = reader.ReadToEnd();
-                           Console.WriteLine(string.Format("Сообщение об ошибке: {0}", error));
+                           Console.WriteLine("Сообщение об ошибке: {0}", error);
                         }
                   }
                }
