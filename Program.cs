@@ -292,7 +292,7 @@ namespace SyncJsonClient
             // Пытаемся отправить невалидный JSON
             string invalidJson = "{invalid json}";
             Client.UploadString(BaseUrl, "POST", invalidJson);
-            Console.WriteLine($"Статус: ОШИБКА - сервер принял невалидный JSON");
+            Console.WriteLine("Статус: ОШИБКА - сервер принял невалидный JSON");
          }
          catch (WebException ex)
          {
