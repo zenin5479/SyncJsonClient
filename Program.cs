@@ -304,11 +304,12 @@ namespace SyncJsonClient
                   Console.WriteLine("Статус: Ожидаемая ошибка - невалидные данные");
                   using (Stream stream = ex.Response.GetResponseStream())
                   {
-                     using (StreamReader reader = new StreamReader(stream))
-                     {
-                        var error = reader.ReadToEnd();
-                        Console.WriteLine($"Сообщение об ошибке: {error}");
-                     }
+                     if (stream != null)
+                        using (StreamReader reader = new StreamReader(stream))
+                        {
+                           var error = reader.ReadToEnd();
+                           Console.WriteLine($"Сообщение об ошибке: {error}");
+                        }
                   }
                }
                else
