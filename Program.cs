@@ -49,8 +49,8 @@ namespace SyncJsonClient
             GetAllItems();
 
             // 6. Получаем элемент по ID
-            Console.WriteLine("\n5. Получение элемента по ID {0}:", item1.Id);
-            GetItemById(item1.Id);
+            Console.WriteLine("\n5. Получение элемента по ID {0}:", item2.Id);
+            GetItemById(item2.Id);
 
             // 7. Обновляем элемент
             Console.WriteLine("\n6. Обновление элемента с ID {0}:", item1.Id);
