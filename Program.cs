@@ -40,12 +40,12 @@ namespace SyncJsonClient
             Item item1 = CreateItem(new Item { Name = "Ноутбук", Price = 1567.89 });
 
             // 4. Создаем второй элемент
-            Console.WriteLine("\n3. Создание второго элемента:");
+            Console.WriteLine("\n3. Создание второго и третьего элемента:");
             Item item2 = CreateItem(new Item { Name = "Смартфон", Price = 234.56 });
-            Item item3 = CreateItem(new Item { Name = "Смартфон", Price = 234.56 });
+            Item item3 = CreateItem(new Item { Name = "Смартфон", Price = 543.21 });
 
-            // 5. Получаем все элементы (должно быть 2 элемента)
-            Console.WriteLine("\n4. Получение всех элементов (должно быть 2 элемента):");
+            // 5. Получаем все элементы (должно быть 3 элемента)
+            Console.WriteLine("\n4. Получение всех элементов (должно быть 3 элемента):");
             GetAllItems();
 
             // 6. Получаем элемент по ID
