@@ -302,7 +302,7 @@ namespace SyncJsonClient
                if (response.StatusCode == HttpStatusCode.BadRequest)
                {
                   Console.WriteLine("Статус: Ожидаемая ошибка - невалидные данные");
-                  using (var stream = ex.Response.GetResponseStream())
+                  using (Stream stream = ex.Response.GetResponseStream())
                   using (var reader = new StreamReader(stream))
                   {
                      var error = reader.ReadToEnd();
