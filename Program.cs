@@ -42,6 +42,7 @@ namespace SyncJsonClient
             // 4. Создаем второй элемент
             Console.WriteLine("\n3. Создание второго элемента:");
             Item item2 = CreateItem(new Item { Name = "Смартфон", Price = 234.56 });
+            Item item3 = CreateItem(new Item { Name = "Смартфон", Price = 234.56 });
 
             // 5. Получаем все элементы (должно быть 2 элемента)
             Console.WriteLine("\n4. Получение всех элементов (должно быть 2 элемента):");
@@ -64,8 +65,8 @@ namespace SyncJsonClient
             GetNonExistentItem(999);
 
             // 10. Удаляем элемент
-            Console.WriteLine("\n9. Удаление элемента с ID {0}:", item2.Id);
-            DeleteItem(item2.Id);
+            Console.WriteLine("\n9. Удаление элемента с ID {0}:", item3.Id);
+            DeleteItem(item3.Id);
 
             // 11. Проверяем, что элемент удален
             Console.WriteLine("\n10. Проверка, что элемент удален:");
