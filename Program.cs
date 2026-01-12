@@ -367,7 +367,7 @@ namespace SyncJsonClient
             {
                using (Stream stream = response.GetResponseStream())
                {
-                  using (var reader = new StreamReader(stream))
+                  using (StreamReader reader = new StreamReader(stream))
                   {
                      var errorBody = reader.ReadToEnd();
                      if (!string.IsNullOrEmpty(errorBody))
