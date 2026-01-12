@@ -359,10 +359,10 @@ namespace SyncJsonClient
 
       static void HandleWebException(WebException ex)
       {
-         if (ex.Response is HttpWebResponse response)
+         HttpWebResponse response = ex.Response as HttpWebResponse;
+         if (response != null)
          {
-            Console.WriteLine(string.Format("HTTP Ошибка: {0} {1}", (int)response.StatusCode, response.StatusCode));
-
+            Console.WriteLine("HTTP Ошибка: {0} {1}", (int)response.StatusCode, response.StatusCode);
             try
             {
                using (var stream = response.GetResponseStream())
