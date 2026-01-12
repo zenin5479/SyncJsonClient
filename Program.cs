@@ -333,7 +333,7 @@ namespace SyncJsonClient
          {
             // Пытаемся использовать неразрешенный метод
             Client.Headers[HttpRequestHeader.ContentType] = "application/json";
-            var response = Client.UploadString(BaseUrl, "PATCH", "{}");
+            string response = Client.UploadString(BaseUrl, "PATCH", "{}");
             Console.WriteLine($"Статус: ОШИБКА - сервер принял неразрешенный метод");
          }
          catch (WebException ex)
