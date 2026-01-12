@@ -369,7 +369,7 @@ namespace SyncJsonClient
                {
                   using (StreamReader reader = new StreamReader(stream))
                   {
-                     var errorBody = reader.ReadToEnd();
+                     string errorBody = reader.ReadToEnd();
                      if (!string.IsNullOrEmpty(errorBody))
                      {
                         Console.WriteLine("Тело ошибки: {0}", errorBody);
