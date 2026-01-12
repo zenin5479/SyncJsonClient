@@ -367,14 +367,15 @@ namespace SyncJsonClient
             {
                using (Stream stream = response.GetResponseStream())
                {
-                  using (StreamReader reader = new StreamReader(stream))
-                  {
-                     string errorBody = reader.ReadToEnd();
-                     if (!string.IsNullOrEmpty(errorBody))
+                  if (stream != null)
+                     using (StreamReader reader = new StreamReader(stream))
                      {
-                        Console.WriteLine("Тело ошибки: {0}", errorBody);
+                        string errorBody = reader.ReadToEnd();
+                        if (!string.IsNullOrEmpty(errorBody))
+                        {
+                           Console.WriteLine("Тело ошибки: {0}", errorBody);
+                        }
                      }
-                  }
                }
             }
             catch
