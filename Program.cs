@@ -61,8 +61,8 @@ namespace SyncJsonClient
             GetItemById(updatedItem.Id);
 
             // 9. Пытаемся получить несуществующий элемент
-            Console.WriteLine("\n8. Попытка получить несуществующий элемент (ID=999):");
-            GetNonExistentItem(999);
+            Console.WriteLine("\n8. Попытка получить несуществующий элемент (ID=88):");
+            GetNonExistentItem(88);
 
             // 10. Удаляем элемент
             Console.WriteLine("\n9. Удаление элемента с ID {0}:", item3.Id);
