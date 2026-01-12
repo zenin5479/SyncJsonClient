@@ -365,7 +365,7 @@ namespace SyncJsonClient
             Console.WriteLine("HTTP Ошибка: {0} {1}", (int)response.StatusCode, response.StatusCode);
             try
             {
-               using (var stream = response.GetResponseStream())
+               using (Stream stream = response.GetResponseStream())
                {
                   using (var reader = new StreamReader(stream))
                   {
