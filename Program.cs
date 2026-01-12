@@ -378,10 +378,7 @@ namespace SyncJsonClient
                      }
                }
             }
-            catch
-            {
-               // Игнорируем ошибки чтения тела ответа
-            }
+          
          }
          else
          {
