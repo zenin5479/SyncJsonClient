@@ -338,9 +338,17 @@ namespace SyncJsonClient
          }
          catch (WebException ex)
          {
-            if (ex.Response is HttpWebResponse response && response.StatusCode == HttpStatusCode.MethodNotAllowed)
+            HttpWebResponse response = (HttpWebResponse)ex.Response;
+            if (response != null)
             {
-               Console.WriteLine($"Статус: Ожидаемая ошибка - метод не разрешен");
+               if (response.StatusCode == HttpStatusCode.MethodNotAllowed)
+               {
+                  Console.WriteLine($"Статус: Ожидаемая ошибка - метод не разрешен");
+               }
+               else
+               {
+                  HandleWebException(ex);
+               }
             }
             else
             {
