@@ -377,8 +377,6 @@ namespace SyncJsonClient
                   }
                }
             }
-
-
          }
          else
          {
