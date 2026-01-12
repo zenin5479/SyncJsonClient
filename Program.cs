@@ -363,10 +363,10 @@ namespace SyncJsonClient
          if (response != null)
          {
             Console.WriteLine("HTTP Ошибка: {0} {1}", (int)response.StatusCode, response.StatusCode);
-
             using (Stream stream = response.GetResponseStream())
             {
                if (stream != null)
+               {
                   using (StreamReader reader = new StreamReader(stream))
                   {
                      string errorBody = reader.ReadToEnd();
@@ -375,6 +375,7 @@ namespace SyncJsonClient
                         Console.WriteLine("Тело ошибки: {0}", errorBody);
                      }
                   }
+               }
             }
 
 
