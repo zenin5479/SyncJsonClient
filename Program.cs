@@ -361,7 +361,7 @@ namespace SyncJsonClient
       {
          if (ex.Response is HttpWebResponse response)
          {
-            Console.WriteLine($"HTTP Ошибка: {(int)response.StatusCode} {response.StatusCode}");
+            Console.WriteLine(string.Format("HTTP Ошибка: {0} {1}", (int)response.StatusCode, response.StatusCode));
 
             try
             {
