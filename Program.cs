@@ -54,7 +54,7 @@ namespace SyncJsonClient
 
             // 7. Обновляем элемент
             Console.WriteLine("\n6. Обновление элемента с ID {0}:", item1.Id);
-            Item updatedItem = UpdateItem(item1.Id, new Item { Name = "Игровой ноутбук", Price = 1234.56 });
+            Item updatedItem = UpdateItem(item1.Id, new Item { Name = "Игровой ноутбук", Price = 1678.95 });
 
             // 8. Проверяем обновление
             Console.WriteLine("\n7. Проверка обновленного элемента:");
