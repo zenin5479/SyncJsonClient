@@ -38,7 +38,7 @@ namespace SyncJsonClient
 
             // 3. Создаем первый элемент
             Console.WriteLine("\n2. Создание первого элемента:");
-            Item item1 = CreateItem(new Item { Vendor = "HP" ,Name = "Ноутбук", Price = 1567.89 });
+            Item item1 = CreateItem(new Item { Vendor = "HP", Name = "Ноутбук", Price = 1567.89 });
 
             // 4. Создаем второй и третий элемент
             Console.WriteLine("\n3. Создание второго и третьего элемента:");
