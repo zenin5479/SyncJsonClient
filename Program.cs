@@ -166,7 +166,7 @@ namespace SyncJsonClient
             string response = Client.UploadString(BaseUrl, "POST", json);
             Item createdItem = JsonConvert.DeserializeObject<Item>(response);
             Console.WriteLine("Статус: Создано успешно");
-            Console.WriteLine("ID: {0}, Название: {1}, Цена: {2:F}", createdItem.Id, createdItem.Name, createdItem.Price);
+            Console.WriteLine("ID: {0}, Производитель: {1}, Название: {2}, Цена: {3:F}", item.Id, item.Vendor, item.Name, item.Price);
             return createdItem;
          }
          catch (WebException ex)
