@@ -150,7 +150,6 @@ namespace SyncJsonClient
                {
                   Item item = items[i];
                   Console.WriteLine("ID: {0}, Производитель: {1}, Название: {2}, Цена: {3:F}", item.Id, item.Vendor, item.Name, item.Price);
-                  
                   i++;
                }
             }
