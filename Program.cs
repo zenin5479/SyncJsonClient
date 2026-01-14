@@ -145,6 +145,12 @@ namespace SyncJsonClient
             Console.WriteLine("Найдено элементов: {0}", items.Count);
             if (items.Count > 0)
             {
+
+
+               while ()
+               {
+                  
+               }  
                for (int i = 0; i < items.Count; i++)
                {
                   Item item = items[i];
