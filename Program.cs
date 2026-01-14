@@ -145,13 +145,13 @@ namespace SyncJsonClient
             Console.WriteLine("Найдено элементов: {0}", items.Count);
             if (items.Count > 0)
             {
+               int i = 0;
 
-
-               while ()
+               while (i < items.Count)
                {
-                  
-               }  
-               for (int i = 0; i < items.Count; i++)
+
+               }
+               for (; i++)
                {
                   Item item = items[i];
                   Console.WriteLine("ID: {0}, Производитель: {1}, Название: {2}, Цена: {3:F}", item.Id, item.Vendor, item.Name, item.Price);
