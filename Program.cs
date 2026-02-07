@@ -130,7 +130,7 @@ namespace SyncJsonClient
          }
          catch
          {
-            Console.WriteLine("Сервер недоступен. Убедитесь, что сервер запущен на http://127.0.0.1:8080/");
+            Console.WriteLine("1. Сервер недоступен. Убедитесь, что сервер запущен на http://127.0.0.1:8080/");
             throw;
          }
       }
