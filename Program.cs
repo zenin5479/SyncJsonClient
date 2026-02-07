@@ -126,7 +126,7 @@ namespace SyncJsonClient
          try
          {
             Client.DownloadString(BaseUrl);
-            Console.WriteLine("Сервер доступен");
+            Console.WriteLine("1. Сервер доступен");
          }
          catch
          {
