@@ -22,6 +22,17 @@ namespace SyncJsonClient
 
       static void Main()
       {
+         // 1. Получение Timestamp
+         Console.WriteLine("========================================================");
+         Console.WriteLine("Получение Timestamp через DateTimeOffset (рекомендуется)");
+         DateTimeOffset dateTimeOne = DateTimeOffset.UtcNow;
+         long timestampOne = dateTimeOne.ToUnixTimeMilliseconds();
+         Console.WriteLine("Текущее UTC время: {0}", dateTimeOne);
+         Console.WriteLine("Текущее UTC время в милисекундах: {0:dd.MM.yyyy HH:mm:ss.fff}", dateTimeOne);
+         Console.WriteLine("Timestamp: {0}", timestampOne);
+
+
+
          Console.WriteLine("SyncJsonClient Тест");
          Console.WriteLine("===================");
          // Устанавливаем Content-Type для JSON
