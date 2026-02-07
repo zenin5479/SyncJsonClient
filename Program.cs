@@ -82,7 +82,7 @@ namespace SyncJsonClient
             TestInvalidData();
 
             // 14. Тестирование неверного метода
-            Console.WriteLine("\n13. Тестирование неверного метода (PATCH):");
+            Console.WriteLine("\n14. Тестирование неверного метода (PATCH):");
             TestInvalidMethod();
 
             Console.WriteLine("\nВсе тесты завершены!");
