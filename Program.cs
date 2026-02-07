@@ -78,7 +78,7 @@ namespace SyncJsonClient
             DeleteNonExistentItem(77);
 
             // 13. Тестирование некорректных данных
-            Console.WriteLine("\n12. Тестирование некорректных данных:");
+            Console.WriteLine("\n13. Тестирование некорректных данных:");
             TestInvalidData();
 
             // 14. Тестирование неверного метода
