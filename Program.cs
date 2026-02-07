@@ -23,7 +23,6 @@ namespace SyncJsonClient
       public long Timestamp { get; set; }
    }
 
-
    class Program
    {
       private const string BaseUrl = "http://127.0.0.1:8080/api/items";
