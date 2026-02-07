@@ -24,7 +24,7 @@ namespace SyncJsonClient
    }
 
    // Сериализация/десериализация точного времени в Unix‑timestamp в миллисекундах (13‑значное число)
-   static void CaseThree()
+   void CaseThree()
    {
       Event log = new Event
       {
