@@ -23,52 +23,59 @@ namespace SyncJsonClient
       public long Timestamp { get; set; }
    }
 
-   // Сериализация/десериализация точного времени в Unix‑timestamp в миллисекундах (13‑значное число)
-   void CaseThree()
-   {
-      Event log = new Event
-      {
-         Date = DateTimeOffset.UtcNow,
-         Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
-      };
-
-      // Настройка формата даты с помощью JsonSerializerSettings
-      Console.WriteLine("1. Cериализация. Настройка формата даты с помощью JsonSerializerSettings:");
-      JsonSerializerSettings customformat = new JsonSerializerSettings
-      {
-         DateFormatString = "dd.MM.yyyy HH:mm:ss.fff"
-      };
-
-      string jsoncustom = JsonConvert.SerializeObject(log, customformat);
-      Console.WriteLine(jsoncustom);
-
-      Event deserializedevent = JsonConvert.DeserializeObject<Event>(jsoncustom, customformat);
-      Console.WriteLine("2. Десериализованная дата: {0}", deserializedevent.Date);
-      Console.WriteLine("3. Время (в формате строки): {0}", deserializedevent.Date.ToString("dd.MM.yyyy HH:mm:ss.fff"));
-      Console.WriteLine("4. Unix timestamp (ms): {0}", deserializedevent.Timestamp);
-
-      // Настройка формата даты с помощью IsoDateTimeConverter
-      Console.WriteLine("1. Cериализация. Настройка формата даты с помощью IsoDateTimeConverter:");
-      JsonSerializerSettings customsettings = new JsonSerializerSettings
-      {
-         Converters = { new IsoDateTimeConverter { DateTimeFormat = "dd.MM.yyyy HH:mm:ss.fff" } }
-      };
-
-      string jsonsettings = JsonConvert.SerializeObject(log, customsettings);
-      Console.WriteLine(jsonsettings);
-      Event deserializedeven = JsonConvert.DeserializeObject<Event>(jsonsettings, customsettings);
-      Console.WriteLine("2. Десериализованная дата: {0}", deserializedeven.Date);
-      Console.WriteLine("3. Время (в формате строки): {0}", deserializedeven.Date.ToString("dd.MM.yyyy HH:mm:ss.fff"));
-      Console.WriteLine("4. Unix timestamp (ms): {0}", deserializedeven.Timestamp);
-   }
 
    class Program
    {
       private const string BaseUrl = "http://127.0.0.1:8080/api/items";
       private static readonly WebClient Client = new WebClient();
 
+
+      // Сериализация/десериализация точного времени в Unix‑timestamp в миллисекундах (13‑значное число)
+      static void CaseThree()
+      {
+         Event log = new Event
+         {
+            Date = DateTimeOffset.UtcNow,
+            Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
+         };
+
+         // Настройка формата даты с помощью JsonSerializerSettings
+         Console.WriteLine("1. Cериализация. Настройка формата даты с помощью JsonSerializerSettings:");
+         JsonSerializerSettings customformat = new JsonSerializerSettings
+         {
+            DateFormatString = "dd.MM.yyyy HH:mm:ss.fff"
+         };
+
+         string jsoncustom = JsonConvert.SerializeObject(log, customformat);
+         Console.WriteLine(jsoncustom);
+
+         Event deserializedevent = JsonConvert.DeserializeObject<Event>(jsoncustom, customformat);
+         Console.WriteLine("2. Десериализованная дата: {0}", deserializedevent.Date);
+         Console.WriteLine("3. Время (в формате строки): {0}", deserializedevent.Date.ToString("dd.MM.yyyy HH:mm:ss.fff"));
+         Console.WriteLine("4. Unix timestamp (ms): {0}", deserializedevent.Timestamp);
+
+         // Настройка формата даты с помощью IsoDateTimeConverter
+         Console.WriteLine("1. Cериализация. Настройка формата даты с помощью IsoDateTimeConverter:");
+         JsonSerializerSettings customsettings = new JsonSerializerSettings
+         {
+            Converters = { new IsoDateTimeConverter { DateTimeFormat = "dd.MM.yyyy HH:mm:ss.fff" } }
+         };
+
+         string jsonsettings = JsonConvert.SerializeObject(log, customsettings);
+         Console.WriteLine(jsonsettings);
+         Event deserializedeven = JsonConvert.DeserializeObject<Event>(jsonsettings, customsettings);
+         Console.WriteLine("2. Десериализованная дата: {0}", deserializedeven.Date);
+         Console.WriteLine("3. Время (в формате строки): {0}", deserializedeven.Date.ToString("dd.MM.yyyy HH:mm:ss.fff"));
+         Console.WriteLine("4. Unix timestamp (ms): {0}", deserializedeven.Timestamp);
+      }
+
       static void Main()
       {
+         Console.WriteLine();
+         CaseThree();
+
+         Console.ReadKey();
+
          // 1. Получение Timestamp
          Console.WriteLine("========================================================");
          Console.WriteLine("Получение Timestamp через DateTimeOffset (рекомендуется)");
