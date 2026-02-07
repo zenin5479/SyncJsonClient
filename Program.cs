@@ -66,7 +66,7 @@ namespace SyncJsonClient
             GetNonExistentItem(88);
 
             // 10. Удаляем элемент
-            Console.WriteLine("\n9. Удаление элемента с ID {0}:", item3.Id);
+            Console.WriteLine("\n10. Удаление элемента с ID {0}:", item3.Id);
             DeleteItem(item3.Id);
 
             // 11. Проверяем, что элемент удален
