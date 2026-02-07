@@ -46,7 +46,7 @@ namespace SyncJsonClient
             Item item3 = CreateItem(new Item { Id = 3, Vendor = "DELL", Name = "Смартфон", Price = 543.21 });
 
             // 5. Получаем все элементы (должно быть 3 элемента)
-            Console.WriteLine("\n4. Получение всех элементов (должно быть 3 элемента):");
+            Console.WriteLine("\n5. Получение всех элементов (должно быть 3 элемента):");
             GetAllItems();
 
             // 6. Получаем элемент по ID
