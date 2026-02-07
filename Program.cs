@@ -28,7 +28,6 @@ namespace SyncJsonClient
       private const string BaseUrl = "http://127.0.0.1:8080/api/items";
       private static readonly WebClient Client = new WebClient();
 
-
       // Сериализация/десериализация точного времени в Unix‑timestamp в миллисекундах (13‑значное число)
       static void CaseThree()
       {
@@ -73,8 +72,6 @@ namespace SyncJsonClient
          Console.WriteLine();
          CaseThree();
 
-         Console.ReadKey();
-
          // 1. Получение Timestamp
          Console.WriteLine("========================================================");
          Console.WriteLine("Получение Timestamp через DateTimeOffset (рекомендуется)");
@@ -89,7 +86,9 @@ namespace SyncJsonClient
          Console.WriteLine("Конвертация из Timestamp в DateTime через DateTimeOffset");
          DateTime dateTime = DateTimeOffset.FromUnixTimeMilliseconds(timestampOne).UtcDateTime;
          Console.WriteLine("Текущее UTC время: {0}", dateTime);
-         Console.WriteLine("Текущее UTC время в милисекундах: {0:dd.MM.yyyy HH:mm:ss.fff}", dateTime);
+         Console.WriteLine("Текущее UTC время в милисекундах: {0:dd.MM.yyyy HH:mm:ss.fff}", dateTime); 
+         
+         Console.ReadKey();
 
          Console.WriteLine("SyncJsonClient Тест");
          Console.WriteLine("===================");
