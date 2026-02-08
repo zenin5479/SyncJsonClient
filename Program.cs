@@ -111,8 +111,8 @@ namespace SyncJsonClient
 
             // 4. Создаем второй и третий элемент
             Console.WriteLine("\n4. Создание второго и третьего элемента:");
-            Item item2 = CreateItem(new Item { Id = 2, Vendor = "ACER", Name = "Смартфон", Price = 234.56 });
-            Item item3 = CreateItem(new Item { Id = 3, Vendor = "DELL", Name = "Смартфон", Price = 543.21 });
+            Item item2 = CreateItem(new Item { Date = DateTimeOffset.UtcNow, Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(), Id = 2, Vendor = "ACER", Name = "Смартфон", Price = 234.56 });
+            Item item3 = CreateItem(new Item { Date = DateTimeOffset.UtcNow, Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(), Id = 3, Vendor = "DELL", Name = "Смартфон", Price = 543.21 });
 
             // 5. Получаем все элементы (должно быть 3 элемента)
             Console.WriteLine("\n5. Получение всех элементов (должно быть 3 элемента):");
@@ -124,7 +124,7 @@ namespace SyncJsonClient
 
             // 7. Обновляем элемент
             Console.WriteLine("\n7. Обновление элемента с ID {0}:", item1.Id);
-            Item updatedItem = UpdateItem(item1.Id, new Item { Id = 7, Vendor = "Lenovo", Name = "Игровой ноутбук", Price = 1678.95 });
+            Item updatedItem = UpdateItem(item1.Id, new Item { Date = DateTimeOffset.UtcNow, Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(), Id = 7, Vendor = "Lenovo", Name = "Игровой ноутбук", Price = 1678.95 });
 
             // 8. Проверяем обновление
             Console.WriteLine("\n8. Проверка обновленного элемента:");
