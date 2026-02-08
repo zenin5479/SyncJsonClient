@@ -72,7 +72,8 @@ namespace SyncJsonClient
       static void Main()
       {
          CaseEvent();
-         // 1. Получение Timestamp
+
+         // Получение Timestamp
          Console.WriteLine("========================================================");
          Console.WriteLine("Получение Timestamp через DateTimeOffset (рекомендуется)");
          DateTimeOffset dateTimeOne = DateTimeOffset.UtcNow;
