@@ -82,13 +82,6 @@ namespace SyncJsonClient
          Console.WriteLine("Текущее UTC время в милисекундах: {0:dd.MM.yyyy HH:mm:ss.fff}", dateTimeOne);
          Console.WriteLine("Timestamp: {0}", timestampOne);
 
-         // 2. Конвертация Timestamp в DateTime
-         Console.WriteLine("========================================================");
-         Console.WriteLine("Конвертация из Timestamp в DateTime через DateTimeOffset");
-         DateTime dateTime = DateTimeOffset.FromUnixTimeMilliseconds(timestampOne).UtcDateTime;
-         Console.WriteLine("Текущее UTC время: {0}", dateTime);
-         Console.WriteLine("Текущее UTC время в милисекундах: {0:dd.MM.yyyy HH:mm:ss.fff}", dateTime);
-
          Console.ReadKey();
 
          Console.WriteLine("SyncJsonClient Тест");
