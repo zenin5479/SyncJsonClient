@@ -31,7 +31,7 @@ namespace SyncJsonClient
       private static readonly WebClient Client = new WebClient();
 
       // Сериализация/десериализация точного времени в Unix‑timestamp в миллисекундах (13‑значное число)
-      static void CaseThree()
+      static void CaseEvent()
       {
          Event log = new Event
          {
@@ -71,7 +71,7 @@ namespace SyncJsonClient
 
       static void Main()
       {
-         CaseThree();
+         CaseEvent();
 
          // 1. Получение Timestamp
          Console.WriteLine("========================================================");
