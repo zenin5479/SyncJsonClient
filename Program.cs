@@ -71,8 +71,7 @@ namespace SyncJsonClient
 
       static void Main()
       {
-         Console.WriteLine();
-         CaseThree();
+        CaseThree();
 
          // 1. Получение Timestamp
          Console.WriteLine("========================================================");
