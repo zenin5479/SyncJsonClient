@@ -32,7 +32,6 @@ namespace SyncJsonClient
 
       static void Main()
       {
-
          Event log = new Event
          {
             Date = DateTimeOffset.UtcNow,
