@@ -185,8 +185,15 @@ namespace SyncJsonClient
       {
          try
          {
+            // Настройка формата даты с помощью JsonSerializerSettings
+            Console.WriteLine("1. Cериализация. Настройка формата даты с помощью JsonSerializerSettings:");
+            JsonSerializerSettings customformat = new JsonSerializerSettings
+            {
+               DateFormatString = "dd.MM.yyyy HH:mm:ss.fff"
+            };
+
             string response = Client.DownloadString(BaseUrl);
-            List<Item> items = JsonConvert.DeserializeObject<List<Item>>(response);
+            List<Item> items = JsonConvert.DeserializeObject<List<Item>>(response, customformat);
             Console.WriteLine("Статус: Успешно");
             Console.WriteLine("Найдено элементов: {0}", items.Count);
             if (items.Count > 0)
@@ -195,7 +202,7 @@ namespace SyncJsonClient
                while (i < items.Count)
                {
                   Item item = items[i];
-                  Console.WriteLine("Date: {0:dd.MM.yyyy HH:mm:ss.fff}, Timestamp: {1}, ID: {2}, Производитель: {3}, Название: {4}, Цена: {5:F}",
+                  Console.WriteLine("Date: {0}, Timestamp: {1}, ID: {2}, Производитель: {3}, Название: {4}, Цена: {5:F}",
                      item.Date, item.Timestamp, item.Id, item.Vendor, item.Name, item.Price);
                   i++;
                }
