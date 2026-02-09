@@ -32,41 +32,7 @@ namespace SyncJsonClient
 
       static void Main()
       {
-         Event log = new Event
-         {
-            Date = DateTimeOffset.UtcNow,
-            Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
-         };
-
-         // Настройка формата даты с помощью JsonSerializerSettings
-         Console.WriteLine("1. Cериализация. Настройка формата даты с помощью JsonSerializerSettings:");
-         JsonSerializerSettings customformat = new JsonSerializerSettings
-         {
-            DateFormatString = "dd.MM.yyyy HH:mm:ss.fff"
-         };
-
-         string jsoncustom = JsonConvert.SerializeObject(log, customformat);
-         Console.WriteLine(jsoncustom);
-
-         Event deserializedevent = JsonConvert.DeserializeObject<Event>(jsoncustom, customformat);
-         Console.WriteLine("2. Десериализованная дата: {0}", deserializedevent.Date);
-         Console.WriteLine("3. Время (в формате строки): {0}", deserializedevent.Date.ToString("dd.MM.yyyy HH:mm:ss.fff"));
-         Console.WriteLine("4. Unix timestamp (ms): {0}", deserializedevent.Timestamp);
-
-         // Настройка формата даты с помощью IsoDateTimeConverter
-         Console.WriteLine("1. Cериализация. Настройка формата даты с помощью IsoDateTimeConverter:");
-         JsonSerializerSettings customsettings = new JsonSerializerSettings
-         {
-            Converters = { new IsoDateTimeConverter { DateTimeFormat = "dd.MM.yyyy HH:mm:ss.fff" } }
-         };
-
-         string jsonsettings = JsonConvert.SerializeObject(log, customsettings);
-         Console.WriteLine(jsonsettings);
-         Event deserializedeven = JsonConvert.DeserializeObject<Event>(jsonsettings, customsettings);
-         Console.WriteLine("2. Десериализованная дата: {0}", deserializedeven.Date);
-         Console.WriteLine("3. Время (в формате строки): {0}", deserializedeven.Date.ToString("dd.MM.yyyy HH:mm:ss.fff"));
-         Console.WriteLine("4. Unix timestamp (ms): {0}", deserializedeven.Timestamp);
-         Console.WriteLine();
+         
 
          Console.WriteLine("SyncJsonClient Тест");
          Console.WriteLine("===================");
