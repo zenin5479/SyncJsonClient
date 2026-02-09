@@ -81,6 +81,7 @@ namespace SyncJsonClient
          Console.WriteLine("Текущее UTC время: {0}", dateTimeOne);
          Console.WriteLine("Текущее UTC время в милисекундах: {0:dd.MM.yyyy HH:mm:ss.fff}", dateTimeOne);
          Console.WriteLine("Timestamp: {0}", timestampOne);
+         Console.WriteLine();
 
          Console.ReadKey();
 
