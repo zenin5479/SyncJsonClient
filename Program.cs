@@ -71,7 +71,6 @@ namespace SyncJsonClient
 
       static void Main()
       {
-         CaseEvent();
 
          Event log = new Event
          {
