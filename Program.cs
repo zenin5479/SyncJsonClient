@@ -66,7 +66,6 @@ namespace SyncJsonClient
          Console.WriteLine("2. Десериализованная дата: {0}", deserializedeven.Date);
          Console.WriteLine("3. Время (в формате строки): {0}", deserializedeven.Date.ToString("dd.MM.yyyy HH:mm:ss.fff"));
          Console.WriteLine("4. Unix timestamp (ms): {0}", deserializedeven.Timestamp);
-
          Console.WriteLine();
          //Console.ReadKey();
 
