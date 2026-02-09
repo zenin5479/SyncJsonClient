@@ -211,7 +211,7 @@ namespace SyncJsonClient
                while (i < items.Count)
                {
                   Item item = items[i];
-                  Console.WriteLine("Date: {0}, Timestamp: {1}, ID: {2}, Производитель: {3}, Название: {4}, Цена: {5:F}",
+                  Console.WriteLine("Date: {0:dd.MM.yyyy HH:mm:ss.fff}, Timestamp: {1}, ID: {2}, Производитель: {3}, Название: {4}, Цена: {5:F}",
                      item.Date, item.Timestamp, item.Id, item.Vendor, item.Name, item.Price);
                   i++;
                }
@@ -231,7 +231,7 @@ namespace SyncJsonClient
             string response = Client.UploadString(BaseUrl, "POST", json);
             Item createdItem = JsonConvert.DeserializeObject<Item>(response);
             Console.WriteLine("Статус: Создано успешно");
-            Console.WriteLine("Date: {0}, Timestamp: {1}, ID: {2}, Производитель: {3}, Название: {4}, Цена: {5:F}",
+            Console.WriteLine("Date: {0:dd.MM.yyyy HH:mm:ss.fff}, Timestamp: {1}, ID: {2}, Производитель: {3}, Название: {4}, Цена: {5:F}",
                item.Date, item.Timestamp, item.Id, item.Vendor, item.Name, item.Price);
             return createdItem;
          }
@@ -250,7 +250,7 @@ namespace SyncJsonClient
             string response = Client.DownloadString(url);
             Item item = JsonConvert.DeserializeObject<Item>(response);
             Console.WriteLine("Статус: Найден");
-            Console.WriteLine("Date: {0}, Timestamp: {1}, ID: {2}, Производитель: {3}, Название: {4}, Цена: {5:F}",
+            Console.WriteLine("Date: {0:dd.MM.yyyy HH:mm:ss.fff}, Timestamp: {1}, ID: {2}, Производитель: {3}, Название: {4}, Цена: {5:F}",
                item.Date, item.Timestamp, item.Id, item.Vendor, item.Name, item.Price);
          }
          catch (WebException ex)
