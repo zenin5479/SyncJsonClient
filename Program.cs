@@ -68,7 +68,6 @@ namespace SyncJsonClient
          Console.WriteLine("4. Unix timestamp (ms): {0}", deserializedeven.Timestamp);
          Console.WriteLine();
         
-
          Console.WriteLine("SyncJsonClient Тест");
          Console.WriteLine("===================");
          // Устанавливаем Content-Type для JSON
