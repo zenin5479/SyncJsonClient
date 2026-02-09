@@ -250,7 +250,8 @@ namespace SyncJsonClient
             string response = Client.DownloadString(url);
             Item item = JsonConvert.DeserializeObject<Item>(response);
             Console.WriteLine("Статус: Найден");
-            Console.WriteLine("ID: {0}, Производитель: {1}, Название: {2}, Цена: {3:F}", item.Id, item.Vendor, item.Name, item.Price);
+            Console.WriteLine("Date: {0}, Timestamp: {1}, ID: {2}, Производитель: {3}, Название: {4}, Цена: {5:F}",
+               item.Date, item.Timestamp, item.Id, item.Vendor, item.Name, item.Price);
          }
          catch (WebException ex)
          {
