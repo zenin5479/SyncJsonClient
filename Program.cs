@@ -52,7 +52,7 @@ namespace SyncJsonClient
             Console.WriteLine("\n5. Запрос всех элементов (должно быть 3 элемента):");
             GetAllItems();
 
-            // 6. Получаем элемент по ID
+            // 6. Получение элемента по ID
             Console.WriteLine("\n6. Получение элемента по ID {0}:", item2.Id);
             GetItemById(item2.Id);
 
