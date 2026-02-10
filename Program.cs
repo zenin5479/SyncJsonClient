@@ -77,7 +77,7 @@ namespace SyncJsonClient
             GetAllItems();
 
             // 12. Пытаемся удалить несуществующий элемент
-            Console.WriteLine("\n12. удалить несуществующий элемент (ID=77):");
+            Console.WriteLine("\n12. Удаление несуществующего элемента (ID=77):");
             DeleteNonExistentItem(77);
 
             // 13. Тестирование некорректных данных
