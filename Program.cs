@@ -133,7 +133,7 @@ namespace SyncJsonClient
          }
          catch
          {
-            Console.WriteLine("1. Сервер недоступен. Убедитесь, что сервер запущен");
+            Console.WriteLine("1. Сервер недоступен");
             throw;
          }
       }
