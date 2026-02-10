@@ -56,7 +56,7 @@ namespace SyncJsonClient
             Console.WriteLine("\n6. Получение элемента по ID {0}:", item2.Id);
             GetItemById(item2.Id);
 
-            // 7. Обновляем элемент
+            // 7. Обновление элемента
             Console.WriteLine("\n7. Обновление элемента с ID {0}:", item1.Id);
             Item updatedItem = UpdateItem(item1.Id, new Item { Date = DateTimeOffset.UtcNow, Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(), Id = 7, Vendor = "Lenovo", Name = "Игровой ноутбук", Price = 1678.95 });
 
