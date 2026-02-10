@@ -24,7 +24,7 @@ namespace SyncJsonClient
 
       static void Main()
       {
-         Console.WriteLine("Синхронный json клиент");
+         Console.WriteLine("Синхронный Json клиент");
          Console.WriteLine("===================");
 
          // Устанавливаем Content-Type для JSON
