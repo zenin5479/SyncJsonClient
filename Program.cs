@@ -73,7 +73,7 @@ namespace SyncJsonClient
             DeleteItem(item3.Id);
 
             // 11. Проверяем, что элемент удален
-            Console.WriteLine("\n11. Проверка, что элемент удален:");
+            Console.WriteLine("\n11. Проверка удаления  элемент :");
             GetAllItems();
 
             // 12. Пытаемся удалить несуществующий элемент
