@@ -39,7 +39,7 @@ namespace SyncJsonClient
             Console.WriteLine("\n2. Запрашиваем все элементы (должен быть пустой список):");
             GetAllItems();
 
-            // 3. Создаем первый элемент
+            // 3. Создание первого элемента
             Console.WriteLine("\n3. Создание первого элемента:");
             Item item1 = CreateItem(new Item { Date = DateTimeOffset.UtcNow, Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(), Id = 1, Vendor = "HP", Name = "Ноутбук", Price = 1567.89 });
 
