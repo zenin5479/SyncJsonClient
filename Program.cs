@@ -48,8 +48,8 @@ namespace SyncJsonClient
             Item item2 = CreateItem(new Item { Date = DateTimeOffset.UtcNow, Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(), Id = 2, Vendor = "ACER", Name = "Смартфон", Price = 234.56 });
             Item item3 = CreateItem(new Item { Date = DateTimeOffset.UtcNow, Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(), Id = 3, Vendor = "DELL", Name = "Смартфон", Price = 543.21 });
 
-            // 5. Получаем все элементы (должно быть 3 элемента)
-            Console.WriteLine("\n5. Получение всех элементов (должно быть 3 элемента):");
+            // 5. Запрос всех элементов (должно быть 3 элемента)
+            Console.WriteLine("\n5. Запрос всех элементов (должно быть 3 элемента):");
             GetAllItems();
 
             // 6. Получаем элемент по ID
