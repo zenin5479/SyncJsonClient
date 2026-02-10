@@ -56,11 +56,11 @@ namespace SyncJsonClient
             Console.WriteLine("\n6. Получение элемента по ID {0}:", item2.Id);
             GetItemById(item2.Id);
 
-            // 7. Обновление элемента
+            // 7. Обновление элемента с ID
             Console.WriteLine("\n7. Обновление элемента с ID {0}:", item1.Id);
             Item updatedItem = UpdateItem(item1.Id, new Item { Date = DateTimeOffset.UtcNow, Timestamp = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds(), Id = 7, Vendor = "Lenovo", Name = "Игровой ноутбук", Price = 1678.95 });
 
-            // 8. Проверяем обновление
+            // 8. Проверка обновленного элемента
             Console.WriteLine("\n8. Проверка обновленного элемента:");
             GetItemById(updatedItem.Id);
 
