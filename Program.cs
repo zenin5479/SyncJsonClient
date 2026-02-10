@@ -32,7 +32,7 @@ namespace SyncJsonClient
          Client.Encoding = System.Text.Encoding.UTF8;
          try
          {
-            // 1. Проверяем доступность сервера
+            // 1. Проверка доступности сервера
             TestServerConnection();
 
             // 2. Запрашиваем все элементы (должен быть пустой список)
